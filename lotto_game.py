@@ -1,6 +1,7 @@
 
 from lotto_game.bet import Bet
 from lotto_game.city import City
+from lotto_game.helper import generate_numbers, print_tickets
 from lotto_game.ticket import Ticket
 
 
@@ -8,7 +9,7 @@ def main():
     all_cities = {1: "Bari", 2: "Cagliari", 3: "Firenze", 4: "Genova", 5: "Milano",
                   6: "Napoli", 7: "Palermo", 8: "Roma", 9: "Torino", 10: "Venezia", 11: "Tutte"}
     all_bets = {1: "Ambata", 2: "Ambo", 3: "Terno", 4: "Quaterna", 5: "Cinquina"}
-    played_tickets = {}
+    tickets_played = {}
     MIN_TICKETS = 1
     MAX_TICKETS = 5
     MAX_NUMBERS = 10
@@ -64,10 +65,11 @@ def main():
         city = City(city_name)  # new object of type City
         bet_name = all_bets[bet_key]
         bet = Bet(bet_name)     # new object of type Bet
-        ticket = Ticket(i, bet.name, city.name)
+        selected_numbers = generate_numbers(numbers)
+        ticket = Ticket(i, bet.name, city.name, selected_numbers)
         # Ticket storage
-        played_tickets[ticket.num_ticket] = (ticket.bet, ticket.city)
-        print(played_tickets)
+        tickets_played[ticket.num_ticket] = (ticket.numbers, ticket.city, ticket.bet)
+        print_tickets(tickets_played)
 
 
 if __name__ == "__main__":
