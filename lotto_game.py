@@ -6,17 +6,24 @@ from lotto_game.ticket import Ticket
 
 
 def main():
-    all_cities = {1: "Bari", 2: "Cagliari", 3: "Firenze", 4: "Genova", 5: "Milano",
-                  6: "Napoli", 7: "Palermo", 8: "Roma", 9: "Torino", 10: "Venezia", 11: "Tutte"}
-    all_bets = {1: "Ambata", 2: "Ambo", 3: "Terno", 4: "Quaterna", 5: "Cinquina"}
-    tickets_played = {}
+    # Declaration of variables, constants and data structures
+    # Minimum and maximum number of tickets that can be played
     MIN_TICKETS = 1
     MAX_TICKETS = 5
+    # Maximum amount of numbers that can be played for each ticket
     MAX_NUMBERS = 10
+    # Dictionary containing the cities(aka "wheel") that can be chosen for the bet
+    all_cities = {1: "Bari", 2: "Cagliari", 3: "Firenze", 4: "Genova", 5: "Milano",
+                  6: "Napoli", 7: "Palermo", 8: "Roma", 9: "Torino", 10: "Venezia", 11: "Tutte"}
+    # Dictionary containing the type of bet
+    all_bets = {1: "Ambata", 2: "Ambo", 3: "Terno", 4: "Quaterna", 5: "Cinquina"}
+    # Dictionary that will contain the tickets played
+    tickets_played = {}
+
     # Entering the number of tickets
     while True:
         try:
-            num_tickets = int(input("How many bills do you want to play (min 1 , max 5, 0  exit): "))   # type int
+            num_tickets = int(input("How many tickets do you want to play (between 1 and 5, 0 to quit): "))   # type int
             if MIN_TICKETS <= num_tickets <= MAX_TICKETS:
                 break
             else:
