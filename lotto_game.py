@@ -1,4 +1,4 @@
-
+from lotto_game.input import Input
 from lotto_game.bet import Bet
 from lotto_game.city import City
 from lotto_game.helper import generate_numbers, print_tickets
@@ -6,10 +6,7 @@ from lotto_game.ticket import Ticket
 
 
 def main():
-    # Declaration of variables, constants and data structures
-    # Minimum and maximum number of tickets that can be played
-    MIN_TICKETS = 1
-    MAX_TICKETS = 5
+    # DECLARATION OF VARIABLES, CONSTANTS AND DATA STRUCTURES
     # Maximum amount of numbers that can be played for each ticket
     MAX_NUMBERS = 10
     # Dictionary containing the cities(aka "wheel") that can be chosen for the bet
@@ -20,19 +17,12 @@ def main():
     # Dictionary that will contain the tickets played
     tickets_played = {}
 
-    # Entering the number of tickets
-    while True:
-        try:
-            num_tickets = int(input("How many tickets do you want to play (between 1 and 5, 0 to quit): "))   # type int
-            if MIN_TICKETS <= num_tickets <= MAX_TICKETS:
-                break
-            else:
-                raise ValueError
-        except ValueError:
-            print("Incorrect Entry. Try Again")
-    # Tickets generation
-    for i in range(1, num_tickets+1):
-        print("### TICKET N. {} ###".format(i))
+    # Acquisition of the number of tickets
+    num_tickets = Input.acquire_number_tickets()
+
+   # Tickets generation
+    for i in range(1, num_tickets + 1):
+        print("##### TICKET N. {} #####".format(i))
         # Entering the type of bet
         for k in all_bets:
             print("  {} : {}".format(k, all_bets[k]))
