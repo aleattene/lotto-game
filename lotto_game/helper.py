@@ -1,6 +1,5 @@
 from random import randint
 
-
 # This function returns an ordered list of integers (between MIN_NUMBER and MAX_NUMBERS)
 def generate_numbers(n):
     MIN_NUMBER = 1
@@ -15,12 +14,6 @@ def generate_numbers(n):
     return numbers
 
 
-# This function prints all of the played tickets
-def print_tickets(tickets):
-    for k in sorted(tickets):
-        print("Ticket n. {}".format(k))
-        print("Numbers : {}".format(tickets[k][0]))
-        print("Wheel: {}".format(tickets[k][1]))
-        print("Bet Type : {}".format(tickets[k][2]))
+
 
 
