@@ -1,7 +1,7 @@
 from lotto_game.input import Input
 from lotto_game.bet import Bet
 from lotto_game.city import City
-from lotto_game.helper import generate_numbers
+from lotto_game.helper import Helper
 from lotto_game.output import Output
 from lotto_game.ticket import Ticket
 
@@ -63,7 +63,7 @@ def main():
         city = City(city_name)  # new object of type City
         bet_name = all_bets[bet_key]
         bet = Bet(bet_name)     # new object of type Bet
-        selected_numbers = generate_numbers(numbers)
+        selected_numbers = Helper.generate_numbers(numbers)
         ticket = Ticket(i, bet.name, city.name, selected_numbers)
 
         # Ticket storage
