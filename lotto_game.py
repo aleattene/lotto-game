@@ -1,5 +1,5 @@
 from lotto_game.input import Input
-from lotto_game.bet import Bet
+from lotto_game.bet_type import BetType
 from lotto_game.city import City
 from lotto_game.helper import Helper
 from lotto_game.output import Output
@@ -34,31 +34,20 @@ def main():
         # Acquisition of the amount of numbers to play
         numbers = Input.acquire_amount_numbers(bet_key_name[0], MAX_NUMBERS)
 
-        # Entering the wheel (city) to play
-        for k in all_cities:
-            print("  {}: {}".format(k, all_cities[k]))
-        while True:
-            try:
-                city_key = int(input("Choice the city (between 1 and 11) : "))   # type int
-                if city_key in all_cities:
-                    break
-                else:
-                    raise ValueError
-            except ValueError:
-                print("Incorrect Entry. Try Again")
-        # Single Ticket Generation
-        city_name = all_cities[city_key]
-        city = City(city_name)  # new object of type City
+        # Acquisition of the wheel(s) to play
+        city_name = Input.acquire_wheel(all_cities)
 
-        bet = Bet(bet_key_name[1])     # new object of type BetType
+        # Single Ticket Generation
+        city = City(city_name)  # new object of type City
+        bet = BetType(bet_key_name[1])     # new object of type BetType
         selected_numbers = Helper.generate_numbers(numbers)
         ticket = Ticket(i, bet.name, city.name, selected_numbers)
 
         # Ticket storage
         tickets_played[ticket.num_ticket] = (ticket.numbers, ticket.city, ticket.bet)
 
-        # PRINTING OF THE TICKETS PLAYED
-        Output.print_tickets(tickets_played)
+    # PRINTING OF THE TICKETS PLAYED
+    Output.print_tickets(tickets_played)
 
 
 if __name__ == "__main__":
