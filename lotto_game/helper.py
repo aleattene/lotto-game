@@ -18,7 +18,7 @@ class Helper:
     # Storage of the played tickets
     @staticmethod
     def storage_ticket(tickets_played, ticket):
-        tickets_played[ticket.num_ticket] = (ticket.numbers, ticket.city, ticket.bet)
+        tickets_played[ticket.id_ticket] = (ticket.numbers, ticket.city, ticket.bet_type)
 
 
 
