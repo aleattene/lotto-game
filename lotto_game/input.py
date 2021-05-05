@@ -47,3 +47,21 @@ class Input:
                     raise ValueError
             except ValueError:
                 print("Incorrect Entry. Try Again")
+        return numbers
+
+    # Acquisition of the wheel(s) to play
+    @staticmethod
+    def acquire_wheel(all_cities):
+        for k in all_cities:
+            print("  {}: {}".format(k, all_cities[k]))
+        while True:
+            try:
+                city_key = int(input("Choice the city (between 1 and 11) : "))   # type int
+                if city_key in all_cities:
+                    break
+                else:
+                    raise ValueError
+            except ValueError:
+                print("Incorrect Entry. Try Again")
+        city_name = all_cities[city_key]
+        return city_name
