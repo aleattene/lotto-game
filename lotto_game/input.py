@@ -2,17 +2,14 @@ class Input:
 
     # Acquisition of the number of tickets
     @staticmethod
-    def acquire_number_tickets():
-        # Minimum and maximum number of tickets that can be played
-        MIN_TICKETS = 1
-        MAX_TICKETS = 5
+    def acquire_number_tickets(min_tickets, max_tickets):
         while True:
             try:
                 num_tickets = int(input("How many tickets do you want to play (between 1 and 5, 0 to quit)? "))  # type int
                 if num_tickets == 0:
                     print("Thank you. The simulation of the lotto game is over.")
                     quit()
-                elif MIN_TICKETS <= num_tickets <= MAX_TICKETS:
+                elif min_tickets <= num_tickets <= max_tickets:
                     break
                 else:
                     raise ValueError
@@ -22,9 +19,8 @@ class Input:
 
     # Acquisition of the type of bet
     @staticmethod
-    def acquire_bet_type():
-        # Dictionary containing the type of bet
-        all_bets = {1: "Ambata", 2: "Ambo", 3: "Terno", 4: "Quaterna", 5: "Cinquina"}
+    def acquire_bet_type(num_ticket, all_bets):
+        print("##### TICKET N. {} #####".format(num_ticket))
         for k in all_bets:
             print("  {} : {}".format(k, all_bets[k]))
         while True:
@@ -37,4 +33,17 @@ class Input:
             except ValueError:
                 print("Incorrect Entry. Try Again")
         bet_name = all_bets[bet_key]
-        return bet_name
+        return bet_key, bet_name
+
+    # Acquisition of the amount of numbers to play
+    @staticmethod
+    def acquire_amount_numbers(bet_key, max_numbers):
+        while True:
+            try:
+                numbers = int(input("Numbers (from {} to 10) : ".format(bet_key)))  # type int
+                if bet_key <= numbers <= max_numbers:
+                    break
+                else:
+                    raise ValueError
+            except ValueError:
+                print("Incorrect Entry. Try Again")
