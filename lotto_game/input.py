@@ -19,28 +19,29 @@ class Input:
 
     # Acquisition of the type of bet
     @staticmethod
-    def acquire_bet_type(num_ticket, all_bets):
+    def acquire_bet_type(num_ticket, all_bet_types):
         print("##### TICKET N. {} #####".format(num_ticket))
-        for k in all_bets:
-            print("  {} : {}".format(k, all_bets[k]))
+        for k in all_bet_types:
+            print("  {} : {}".format(k, all_bet_types[k]))
         while True:
             try:
-                bet_key = int(input("Bet Type ? : "))  # type int
-                if bet_key in all_bets:
+                bet_key = int(input("Enter the Type of Bet (between 1 and {}): ".format(len(all_bet_types))))  # type int
+                if bet_key in all_bet_types:
                     break
                 else:
                     raise ValueError
             except ValueError:
                 print("Incorrect Entry. Try Again")
-        bet_name = all_bets[bet_key]
+        bet_name = all_bet_types[bet_key]
         return bet_key, bet_name
 
     # Acquisition of the amount of numbers to play
     @staticmethod
-    def acquire_amount_numbers(bet_key, max_numbers):
+    def acquire_amount_numbers(num_ticket, bet_key, max_numbers):
         while True:
             try:
-                numbers = int(input("Numbers (from {} to 10) : ".format(bet_key)))  # type int
+                numbers = int(input("Enter the amount of numbers to play for the ticket "
+                                    "n. {} (from {} to 10): ".format(num_ticket, bet_key)))  # type int
                 if bet_key <= numbers <= max_numbers:
                     break
                 else:
@@ -56,7 +57,7 @@ class Input:
             print("  {}: {}".format(k, all_cities[k]))
         while True:
             try:
-                city_key = int(input("Choice the city (between 1 and 11) : "))   # type int
+                city_key = int(input("Enter the city (between 1 and {}): ".format(len(all_cities))))   # type int
                 if city_key in all_cities:
                     break
                 else:
@@ -64,4 +65,5 @@ class Input:
             except ValueError:
                 print("Incorrect Entry. Try Again")
         city_name = all_cities[city_key]
-        return city_name
+        return city_key, city_name
+
