@@ -6,7 +6,6 @@ class Ticket:
         self.city = city
         self.numbers = numbers
 
-
     def __str__(self):
         return (f"""
         Ticket number: {self.num_ticket} 
