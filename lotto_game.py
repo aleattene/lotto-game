@@ -13,8 +13,7 @@ def main():
     # Dictionary containing the cities(aka "wheel") that can be chosen for the bet
     all_cities = {1: "Bari", 2: "Cagliari", 3: "Firenze", 4: "Genova", 5: "Milano",
                   6: "Napoli", 7: "Palermo", 8: "Roma", 9: "Torino", 10: "Venezia", 11: "Tutte"}
-    # Dictionary containing the type of bet
-    all_bets = {1: "Ambata", 2: "Ambo", 3: "Terno", 4: "Quaterna", 5: "Cinquina"}
+
     # Dictionary that will contain the tickets played
     tickets_played = {}
 
@@ -24,18 +23,6 @@ def main():
    # Tickets generation
     for i in range(1, num_tickets + 1):
         print("##### TICKET N. {} #####".format(i))
-        # Entering the type of bet
-        for k in all_bets:
-            print("  {} : {}".format(k, all_bets[k]))
-        while True:
-            try:
-                bet_key = int(input("Bet Type ? : "))   # type int
-                if bet_key in all_bets:
-                    break
-                else:
-                    raise ValueError
-            except ValueError:
-                print("Incorrect Entry. Try Again")
         # Entering the number of numbers to play
         while True:
             try:
@@ -61,7 +48,7 @@ def main():
         # Single Ticket Generation
         city_name = all_cities[city_key]
         city = City(city_name)  # new object of type City
-        bet_name = all_bets[bet_key]
+        bet_name = Input.acquire_bet_type()
         bet = Bet(bet_name)     # new object of type Bet
         selected_numbers = Helper.generate_numbers(numbers)
         ticket = Ticket(i, bet.name, city.name, selected_numbers)
