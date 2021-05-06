@@ -21,7 +21,7 @@ def main():
     MAX_NUMBER = 90
 
     # Dictionary containing the type of bet
-    all_bets = {1: "Ambata", 2: "Ambo", 3: "Terno", 4: "Quaterna", 5: "Cinquina"}
+    all_bet_types = {1: "Ambata", 2: "Ambo", 3: "Terno", 4: "Quaterna", 5: "Cinquina"}
 
     # Dictionary containing the cities(aka "wheel") that can be chosen for the bet
     all_cities = {1: "Bari", 2: "Cagliari", 3: "Firenze", 4: "Genova", 5: "Milano",
@@ -37,19 +37,23 @@ def main():
     for i in range(MIN_TICKETS, num_tickets + 1):
 
         # Acquisition of the type of bet
-        bet_key_name = Input.acquire_bet_type(i, all_bets)  # type tuple
+        bet_key_name = Input.acquire_bet_type(i, all_bet_types)  # type TUPLE
 
         # Acquisition of the amount of numbers to play
-        numbers = Input.acquire_amount_numbers(bet_key_name[0], MAX_AMOUNT_NUMBERS)
+        numbers = Input.acquire_amount_numbers(i, bet_key_name[0], MAX_AMOUNT_NUMBERS)  # type INT
 
         # Acquisition of the wheel(s) to play
-        city_name = Input.acquire_wheel(all_cities)
+        city_key_name = Input.acquire_wheel(i, all_cities)  # type TUPLE
 
         # SINGLE TICKET GENERATION
-        city = City(city_name)  # new object of type City
-        bet = BetType(bet_key_name[1])     # new object of type BetType
-        generated_numbers = Helper.generate_numbers(numbers, MIN_NUMBER, MAX_NUMBER)
-        ticket = Ticket(i, bet.name, city.name, generated_numbers)  # new object of type Ticket
+        # New Object of type City
+        city = City(city_key_name[0], city_key_name[1])
+        # New Object of type BetType
+        bet = BetType(bet_key_name[0], bet_key_name[1])
+        # Numbers generation
+        generated_numbers = Helper.generate_numbers(numbers, MIN_NUMBER, MAX_NUMBER)  # type LIST
+        # New Object of type Ticket
+        ticket = Ticket(i, bet.name, city.name, generated_numbers)
 
         # STORAGE OF THE PLAYED TICKET
         Helper.storage_ticket(tickets_played, ticket)
