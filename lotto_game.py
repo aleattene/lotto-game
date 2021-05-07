@@ -40,7 +40,7 @@ def main():
         bet_key_name = Input.acquire_bet_type(i, all_bet_types)  # type TUPLE
 
         # Acquisition of the amount of numbers to play
-        numbers = Input.acquire_amount_numbers(i, bet_key_name[0], MAX_AMOUNT_NUMBERS)  # type INT
+        amount_numbers = Input.acquire_amount_numbers(i, bet_key_name[0], MAX_AMOUNT_NUMBERS)  # type INT
 
         # Acquisition of the wheel(s) to play
         city_key_name = Input.acquire_wheel(i, all_cities)  # type TUPLE
@@ -51,7 +51,7 @@ def main():
         # New Object of type BetType
         bet = BetType(bet_key_name[0], bet_key_name[1])
         # Numbers generation
-        generated_numbers = Helper.generate_numbers(numbers, MIN_NUMBER, MAX_NUMBER)  # type LIST
+        generated_numbers = Helper.generate_numbers(amount_numbers, MIN_NUMBER, MAX_NUMBER)  # type LIST
         # New Object of type Ticket
         ticket = Ticket(i, bet.name, city.name, generated_numbers)
 
