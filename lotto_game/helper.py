@@ -5,13 +5,13 @@ class Helper:
 
     # This method returns an ordered list of integers (between min_number and max_number)
     @staticmethod
-    def generate_numbers(num_tickets, min_number, max_number):
+    def generate_numbers(amount_numbers, min_number, max_number):
         numbers = []
-        while num_tickets > 0:
+        while amount_numbers > 0:
             number = randint(min_number, max_number + 1)
             if number not in numbers:
                 numbers.append(number)
-                num_tickets -= 1
+                amount_numbers -= 1
         numbers.sort()
         return numbers
 
