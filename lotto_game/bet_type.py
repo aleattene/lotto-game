@@ -7,6 +7,12 @@ class BetType:
         self.id_bet_type = id_bet_type
         self.name = name
 
+    def __str__(self):
+        return (f"""
+        Id Bet Type: {self.id_bet_type} 
+        Bet Type: {self.name}  
+        """)
+
     # This static method acquires from the user the type of bet
     @staticmethod
     def acquire_bet_type(num_ticket):
