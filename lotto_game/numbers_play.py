@@ -10,7 +10,7 @@ class NumbersPlay:
         MAX_AMOUNT_NUMBERS = 10
         while True:
             try:
-                numbers = int(input("\nEnter the amount of numbers to play for the ticket " # type INT
+                numbers = int(input("\nEnter the amount of numbers to play for the ticket "  # type INT
                                     "n. {} (from {} to {}): ".format(num_ticket, bet_key, MAX_AMOUNT_NUMBERS)))
                 if bet_key <= numbers <= MAX_AMOUNT_NUMBERS:
                     break
