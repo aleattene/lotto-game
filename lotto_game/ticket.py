@@ -1,13 +1,13 @@
 class Ticket:
 
-    # List that will contain the tickets played
+    # List that will contain all the tickets played
     tickets_played = []
 
     def __init__(self, id_ticket, bet_type, city, numbers):
-        self.id_ticket = id_ticket
-        self.bet_type = bet_type
-        self.city = city
-        self.numbers = numbers
+        self.id_ticket = id_ticket      # type INT
+        self.bet_type = bet_type        # type OBJECT (class BetType)
+        self.city = city                # type OBJECT (class City)
+        self.numbers = numbers          # type LIST
 
     def __str__(self):
         return (f"""
@@ -40,9 +40,9 @@ class Ticket:
                     raise ValueError
             except ValueError:
                 print("Incorrect Entry. Try Again.")
-        return MIN_TICKETS, num_tickets
+        return MIN_TICKETS, num_tickets  # type TUPLE (int,int)
 
-    # This static method prints the tickets played
+    # This static method prints all the tickets played
     @staticmethod
     def print_tickets():
         print()
