@@ -13,7 +13,7 @@ def main():
     # TICKETS GENERATION
     for i in range(range_tickets[0], range_tickets[1] + 1):
 
-        # Acquisition of the type of bet for each ticket
+        # Acquisition of the type of bet_type for each ticket
         bet_key_name = BetType.acquire_bet_type(i)  # type TUPLE (int,str)
 
         # Acquisition of the amount of numbers to generate for each ticket
@@ -25,12 +25,14 @@ def main():
         # SINGLE TICKET GENERATION
         # New Object of type City
         city = City(city_key_name[0], city_key_name[1])
+        print(city)
         # New Object of type BetType
         bet_type = BetType(bet_key_name[0], bet_key_name[1])
         # Generation of the numbers to play for each ticket
         generated_numbers = Numbers.generate_numbers(amount_numbers)  # type LIST [int]
         # New Object of type Ticket
-        ticket = Ticket(i, bet_type.name, city.name, generated_numbers)
+        # .... bet_type must be an OBJECT (class BetType) but doesn't work
+        ticket = Ticket(i, bet_type.id_bet_type, bet_type.name, city, generated_numbers)
 
         # STORAGE OF EACH TICKET PLAYED
         ticket.storage_ticket()
