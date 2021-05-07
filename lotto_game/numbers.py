@@ -1,7 +1,7 @@
 from random import randint
 
 
-class NumbersPlay:
+class Numbers:
 
     # This static method acquires from the user the amount of numbers to generate for each ticket
     @staticmethod

@@ -1,7 +1,8 @@
 from lotto_game.bet_type import BetType
 from lotto_game.city import City
-from lotto_game.numbers_play import NumbersPlay
+from lotto_game.numbers import Numbers
 from lotto_game.ticket import Ticket
+from lotto_game.extraction import Extraction
 
 
 def main():
@@ -16,7 +17,7 @@ def main():
         bet_key_name = BetType.acquire_bet_type(i)  # type TUPLE (int,str)
 
         # Acquisition of the amount of numbers to generate for each ticket
-        amount_numbers = NumbersPlay.acquire_amount_numbers(i, bet_key_name[0])  # type INT
+        amount_numbers = Numbers.acquire_amount_numbers(i, bet_key_name[0])  # type INT
 
         # Acquisition of the wheel/city to play for each ticket
         city_key_name = City.acquire_city(i)  # type TUPLE (int,str)
@@ -27,12 +28,18 @@ def main():
         # New Object of type BetType
         bet_type = BetType(bet_key_name[0], bet_key_name[1])
         # Generation of the numbers to play for each ticket
-        generated_numbers = NumbersPlay.generate_numbers(amount_numbers)  # type LIST [int]
+        generated_numbers = Numbers.generate_numbers(amount_numbers)  # type LIST [int]
         # New Object of type Ticket
         ticket = Ticket(i, bet_type.name, city.name, generated_numbers)
 
         # STORAGE OF EACH TICKET PLAYED
         ticket.storage_ticket()
+
+    # PERFORM EXTRACTION
+    Extraction.perform_extraction()
+
+    # PRINT EXTRACTION
+    Extraction.print_extraction()
 
     # PRINT OF ALL TICKETS PLAYED
     Ticket.print_tickets()
