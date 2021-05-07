@@ -17,7 +17,7 @@ class Extraction:
     @staticmethod
     def print_extraction():
         # TABLE HEADER
-        print("╔{:^43}╗".format("═" * 43))  # ASCII code (201,205,187)
+        print("\n╔{:^43}╗".format("═" * 43))  # ASCII code (201,205,187)
         print("║{:^43}║".format("ESTRAZIONE del "
                                 "{}".format(datetime.today().strftime('%d/%m/%Y'))))  # ASCII code (186,186)
         print("╠{:^43}╣".format("═" * 43))  # ASCII code (204,205,185)
