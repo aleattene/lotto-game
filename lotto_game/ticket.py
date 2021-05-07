@@ -1,3 +1,5 @@
+from lotto_game.extraction import Extraction
+
 class Ticket:
 
     # List that will contain all the tickets played
@@ -8,6 +10,7 @@ class Ticket:
         self.bet_type = bet_type        # type OBJECT (class BetType)
         self.city = city                # type OBJECT (class City)
         self.numbers = numbers          # type LIST
+        self.result = None
 
     def __str__(self):
         return (f"""
@@ -20,6 +23,12 @@ class Ticket:
     # This instance method storages the tickets played
     def storage_ticket(self):
         Ticket.tickets_played.append(self)
+
+    def check_ticket(self):
+        if self.city in Extraction.extraction:
+            return "True"
+        else:
+            return "False"
 
     # This static method acquires from the user the number of tickets to generate
     @staticmethod
@@ -56,4 +65,9 @@ class Ticket:
             for number in ticket.numbers:
                 numbers += str(number) + " "
             print("║  Numbers:  {:31}║".format("{}".format(numbers)))  # ASCII code (186,186)
+            print("╠{:^43}╣".format("═" * 43))  # ASCII code (204,205,185)
+            if ticket.check_ticket():
+                print("║{:^43}║".format("{}".format("Congratulations, you won.")))  # ASCII code (186,186)
+            else:
+                print("║{:^43}║".format("{}".format("I’m sorry, you didn't win.")))  # ASCII code (186,186)
             print("╚{:^43}╝".format("═" * 43))  # ASCII code (200,205,188)
