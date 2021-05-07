@@ -1,21 +1,23 @@
 from lotto_game.extraction import Extraction
 
+
 class Ticket:
 
     # List that will contain all the tickets played
     tickets_played = []
 
-    def __init__(self, id_ticket, bet_type, city, numbers):
+    def __init__(self, id_ticket, bet_type_id, bet_type_name, city, numbers):
         self.id_ticket = id_ticket      # type INT
-        self.bet_type = bet_type        # type OBJECT (class BetType)
+        # .... bet_type must be an OBJECT (class BetType) but doesn't work
+        self.bet_type_id = bet_type_id
+        self.bet_type_name = bet_type_name
         self.city = city                # type OBJECT (class City)
         self.numbers = numbers          # type LIST
-        self.result = None
 
     def __str__(self):
         return (f"""
         Ticket number: {self.id_ticket} 
-        Bet Type: {self.bet_type} 
+        Bet Type: {self.bet_type_name} 
         City: {self.city} 
         Numbers: {self.numbers} 
         """)
@@ -25,10 +27,25 @@ class Ticket:
         Ticket.tickets_played.append(self)
 
     def check_ticket(self):
-        if self.city in Extraction.extraction:
-            return "True"
+        if self.city.name != "Tutte":
+            count = 0
+            for number in Extraction.extraction[self.city.name]:
+                if number in self.numbers:
+                    count += 1
+                    if count >= self.bet_type_id:
+                        return True
         else:
-            return "False"
+            for city in Extraction.extraction:
+                count = 0
+                for number in Extraction.extraction[city]:
+                    if number in self.numbers:
+                        count += 1
+                        if count >= self.bet_type_id:
+                            return True
+        if count >= self.bet_type_id:
+            return True
+        else:
+            return False
 
     # This static method acquires from the user the number of tickets to generate
     @staticmethod
@@ -59,15 +76,16 @@ class Ticket:
             print("╔{:^43}╗".format("═" * 43))     # ASCII code (201,205,187)
             print("║{:^43}║".format("Ticket n. {}".format(ticket.id_ticket)))     # ASCII code (186,186)
             print("╠{:^43}╣".format("═" * 43))  # ASCII code (204,205,185)
-            print("║    Wheel:  {:31}║".format(ticket.city))  # ASCII code (186,186)
-            print("║  BetType:  {:31}║".format(ticket.bet_type))  # ASCII code (186,186)
+            print("║    Wheel:  {:31}║".format(ticket.city.name))  # ASCII code (186,186)
+            # .... bet_type must be an OBJECT (class BetType) but doesn't work
+            print("║  BetType:  {:31}║".format(ticket.bet_type_name))  # ASCII code (186,186)
             numbers = ""
             for number in ticket.numbers:
                 numbers += str(number) + " "
             print("║  Numbers:  {:31}║".format("{}".format(numbers)))  # ASCII code (186,186)
             print("╠{:^43}╣".format("═" * 43))  # ASCII code (204,205,185)
-            if ticket.check_ticket():
+            if ticket.check_ticket():  # True
                 print("║{:^43}║".format("{}".format("Congratulations, you won.")))  # ASCII code (186,186)
-            else:
+            else:  # False
                 print("║{:^43}║".format("{}".format("I’m sorry, you didn't win.")))  # ASCII code (186,186)
             print("╚{:^43}╝".format("═" * 43))  # ASCII code (200,205,188)
