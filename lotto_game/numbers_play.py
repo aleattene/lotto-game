@@ -26,6 +26,7 @@ class NumbersPlay:
         # Range of numbers that can be generated in the lotto game
         MIN_NUMBER = 1
         MAX_NUMBER = 90
+        # List that will contain the numbers generated for each ticket
         numbers = []
         while amount_numbers > 0:
             number = randint(MIN_NUMBER, MAX_NUMBER + 1)
