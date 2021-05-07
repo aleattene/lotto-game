@@ -3,6 +3,23 @@ from random import randint
 
 class Helper:
 
+    # This static method acquires from the user the amount of numbers to generate for each ticket
+    @staticmethod
+    def acquire_amount_numbers(num_ticket, bet_key):
+        # Maximum amount of numbers that can be played for each ticket
+        MAX_AMOUNT_NUMBERS = 10
+        while True:
+            try:
+                numbers = int(input("\nEnter the amount of numbers to play for the ticket "
+                                    "n. {} (from {} to {}): ".format(num_ticket, bet_key, MAX_AMOUNT_NUMBERS)))  # type int
+                if bet_key <= numbers <= MAX_AMOUNT_NUMBERS:
+                    break
+                else:
+                    raise ValueError
+            except ValueError:
+                print("Incorrect Entry. Try Again")
+        return numbers
+
     # This static method returns an ordered list of integers (between min_number and max_number)
     @staticmethod
     def generate_numbers(amount_numbers):
