@@ -10,15 +10,15 @@ class NumbersPlay:
         MAX_AMOUNT_NUMBERS = 10
         while True:
             try:
-                numbers = int(input("\nEnter the amount of numbers to play for the ticket "
-                                    "n. {} (from {} to {}): ".format(num_ticket, bet_key, MAX_AMOUNT_NUMBERS)))  # type int
+                numbers = int(input("\nEnter the amount of numbers to play for the ticket " # type INT
+                                    "n. {} (from {} to {}): ".format(num_ticket, bet_key, MAX_AMOUNT_NUMBERS)))
                 if bet_key <= numbers <= MAX_AMOUNT_NUMBERS:
                     break
                 else:
                     raise ValueError
             except ValueError:
                 print("Incorrect Entry. Try Again")
-        return numbers
+        return numbers  # type INT
 
     # This static method returns an ordered list of integers (between min_number and max_number)
     @staticmethod
@@ -33,7 +33,8 @@ class NumbersPlay:
                 numbers.append(number)
                 amount_numbers -= 1
         numbers.sort()
-        return numbers
+        return numbers  # type LIST (ascending order)
+
 
 
 
