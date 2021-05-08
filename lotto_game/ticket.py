@@ -33,7 +33,7 @@ class Ticket:
                 if number in self.numbers:
                     count += 1
                     if count >= self.bet_type_id:
-                        return True
+                        return True, self.city.name
         else:
             for city in Extraction.extraction:
                 count = 0
@@ -41,11 +41,8 @@ class Ticket:
                     if number in self.numbers:
                         count += 1
                         if count >= self.bet_type_id:
-                            return True
-        if count >= self.bet_type_id:
-            return True
-        else:
-            return False
+                            return True, city
+        return False, ""
 
     # This static method acquires from the user the number of tickets to generate
     @staticmethod
@@ -84,8 +81,10 @@ class Ticket:
                 numbers += str(number) + " "
             print("║  Numbers:  {:31}║".format("{}".format(numbers)))  # ASCII code (186,186)
             print("╠{:^43}╣".format("═" * 43))  # ASCII code (204,205,185)
-            if ticket.check_ticket():  # True
-                print("║{:^43}║".format("{}".format("Congratulations, you won.")))  # ASCII code (186,186)
+            result = ticket.check_ticket()
+            if result[0]:  # True
+                print("║{:^43}║".format("{}".format("Congratulations, you won. Wheel: "
+                                                    "" + result[1])))  # ASCII code (186,186)
             else:  # False
                 print("║{:^43}║".format("{}".format("I’m sorry, you didn't win.")))  # ASCII code (186,186)
             print("╚{:^43}╝".format("═" * 43))  # ASCII code (200,205,188)
