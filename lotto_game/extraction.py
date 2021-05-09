@@ -8,17 +8,18 @@ class Extraction:
     # Dictionary that will contain the extraction {key -> city : value -> [numbers]}
     extraction = {}
 
-    # This static method perform the extraction (generates randomly 5 numbers for each wheel/city)
+    # This static method performs the extraction (generating randomly 5 numbers for each wheel/city)
     @staticmethod
     def perform_extraction():
         # Max amount of numbers that can be extracted for each wheel/city
         AMOUNT_NUMBERS_EXTRACTION = 5
         for k in sorted(City.all_cities):
-            extracted_numbers = NumberUtils.generate_numbers(AMOUNT_NUMBERS_EXTRACTION)  # type LIST
-            # Dictionary Update
-            Extraction.extraction[City.all_cities[k]] = extracted_numbers
+            if City.all_cities[k] != "Tutte":
+                extracted_numbers = NumberUtils.generate_numbers(AMOUNT_NUMBERS_EXTRACTION)  # type LIST
+                # Dictionary Update
+                Extraction.extraction[City.all_cities[k]] = extracted_numbers
 
-    # This static method print tha table of the extraction
+    # This static method prints the table of the extraction
     @staticmethod
     def print_extraction():
         # Table header
