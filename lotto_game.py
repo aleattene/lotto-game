@@ -25,7 +25,6 @@ def main():
         # SINGLE TICKET GENERATION
         # New Object of type City
         city = City(city_key_name[0], city_key_name[1])
-        print(city)
         # New Object of type BetType
         bet_type = BetType(bet_key_name[0], bet_key_name[1])
         # Generation of the numbers to play for each ticket
@@ -37,13 +36,11 @@ def main():
         # STORAGE OF EACH TICKET PLAYED
         ticket.storage_ticket()
 
-    # PERFORM EXTRACTION
+    # PERFORM AND PRINT THE EXTRACTION
     Extraction.perform_extraction()
-
-    # PRINT EXTRACTION
     Extraction.print_extraction()
 
-    # PRINT OF ALL TICKETS PLAYED
+    # PRINT OF ALL TICKETS
     Ticket.print_tickets()
 
 
