@@ -25,7 +25,7 @@ class Extraction:
         # Table header
         print("\n╔{:^43}╗".format("═" * 43))  # ASCII code (201,205,187)
         print("║{:^43}║".format("ESTRAZIONE del "
-                                "{}".format(datetime.today().strftime('%d/%m/%Y'))))  # ASCII code (186,186)
+                                "{}".format(datetime.today().strftime('%d/%m/%Y'))))  # ASCII code (186)
         print("╠{:^43}╣".format("═" * 43))  # ASCII code (204,205,185)
         # Table body
         for city in sorted(Extraction.extraction):
@@ -33,5 +33,5 @@ class Extraction:
             for value in Extraction.extraction[city]:
                 print("{:4}".format(value), end=" ")
             print("  ║")  # ASCII code (186)
-        # Table FOOTER
+        # Table footer
         print("╚{:^43}╝".format("═" * 43))  # ASCII code (200,205,188)
