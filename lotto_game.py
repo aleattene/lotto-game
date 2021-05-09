@@ -1,6 +1,6 @@
 from lotto_game.bet_type import BetType
 from lotto_game.city import City
-from lotto_game.numbers import Numbers
+from lotto_game.number_utils import Numbers
 from lotto_game.ticket import Ticket
 from lotto_game.extraction import Extraction
 
