@@ -1,5 +1,5 @@
 from lotto_game.city import City
-from lotto_game.numbers import Numbers
+from lotto_game.number_utils import Numbers
 from datetime import datetime
 
 
