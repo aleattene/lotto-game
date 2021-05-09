@@ -3,6 +3,7 @@ from lotto_game.city import City
 from lotto_game.number_utils import NumberUtils
 from lotto_game.ticket import Ticket
 from lotto_game.extraction import Extraction
+from lotto_game.win import Win
 
 
 def main():
@@ -40,8 +41,24 @@ def main():
     Extraction.perform_extraction()
     Extraction.print_extraction()
 
-    # PRINT OF ALL TICKETS
-    Ticket.print_tickets()
+    # CHECK RESULTS
+    for ticket in Ticket.tickets_played:
+        result = ticket.check_ticket()  # type TUPLE
+        if ticket.check_ticket():   # non-empty tuple
+            i = 0
+            while True:
+                # New Object of type Win
+                win = Win(result[i], result[i+1])
+                # .... result must be a list of OBJECTS (class Win) but doesn't work
+                ticket.result_city.append(win.city)
+                ticket.result_numbers.append(win.extracted_numbers)
+                i += 2
+                if i >= len(result):
+                    break
+
+    # PRINT RESULTS
+    for ticket in Ticket.tickets_played:
+        ticket.print_ticket()
 
 
 if __name__ == "__main__":
