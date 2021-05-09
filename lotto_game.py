@@ -1,6 +1,6 @@
 from lotto_game.bet_type import BetType
 from lotto_game.city import City
-from lotto_game.number_utils import Numbers
+from lotto_game.number_utils import NumberUtils
 from lotto_game.ticket import Ticket
 from lotto_game.extraction import Extraction
 
@@ -17,7 +17,7 @@ def main():
         bet_key_name = BetType.acquire_bet_type(i)  # type TUPLE (int,str)
 
         # Acquisition of the amount of numbers to generate for each ticket
-        amount_numbers = Numbers.acquire_amount_numbers(i, bet_key_name[0])  # type INT
+        amount_numbers = NumberUtils.acquire_amount_numbers(i, bet_key_name[0])  # type INT
 
         # Acquisition of the wheel/city to play for each ticket
         city_key_name = City.acquire_city(i)  # type TUPLE (int,str)
@@ -28,7 +28,7 @@ def main():
         # New Object of type BetType
         bet_type = BetType(bet_key_name[0], bet_key_name[1])
         # Generation of the numbers to play for each ticket
-        generated_numbers = Numbers.generate_numbers(amount_numbers)  # type LIST [int]
+        generated_numbers = NumberUtils.generate_numbers(amount_numbers)  # type LIST [int]
         # New Object of type Ticket
         # .... bet_type must be an OBJECT (class BetType) but doesn't work
         ticket = Ticket(i, bet_type.id_bet_type, bet_type.name, city, generated_numbers)
