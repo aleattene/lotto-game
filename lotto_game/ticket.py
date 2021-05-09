@@ -51,7 +51,7 @@ class Ticket:
                     wins += city, extracted_numbers
         return wins  # type TUPLE
 
-    # This method prints all the tickets played
+    # This method prints a ticket
     def print_ticket(self):
         print()
         print("╔{:^43}╗".format("═" * 43))     # ASCII code (201,205,187)
