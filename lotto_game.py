@@ -52,7 +52,13 @@ def main():
                 # .... result must be a list of OBJECTS (class Win) but doesn't work
                 ticket.result_city.append(win.city)
                 ticket.result_numbers.append(win.extracted_numbers)
+                # Calculation of gross and net winnings for each wheel played
+                win.calculate_gross_net_win(ticket)
+                # Adding the value of winnings to the attributes of the ticket object
+                ticket.result_gross_amount.append(win.gross_amount)
+                ticket.result_net_amount.append(win.net_amount)
                 i += 2
+                # In the following case, there are no more winning wheels
                 if i >= len(result):
                     break
 
