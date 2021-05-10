@@ -26,6 +26,7 @@ class Ticket:
         Bet Type: {self.bet_type_name} 
         City: {self.city} 
         Numbers: {self.numbers} 
+        Result: {self.result_numbers} 
         """)
 
     # This instance method storages the tickets played
@@ -39,56 +40,65 @@ class Ticket:
         if self.city.name != "Tutte":  # city choice: only one
             # List that will contain the extracted numbers for each city
             extracted_numbers = []
-            for number in Extraction.extraction[self.city.name]:
+            for number in Extraction.extraction[self.city.name]:  # type(number) = INT
                 if number in self.numbers:
                     extracted_numbers.append(number)
-            if len(extracted_numbers) >= self.bet_type_id:
-                wins += self.city.name, extracted_numbers
+            if len(extracted_numbers) >= self.bet_type_id:  # both of type INT
+                wins += self.city.name, extracted_numbers  # type STR, type [int]
         else:   # cities chosen = "Tutte"
             for city in Extraction.extraction:
                 extracted_numbers = []
-                for number in Extraction.extraction[city]:
+                for number in Extraction.extraction[city]:  # type(number) = INT
                     if number in self.numbers:
                         extracted_numbers.append(number)
-                if len(extracted_numbers) >= self.bet_type_id:
-                    wins += city, extracted_numbers
+                if len(extracted_numbers) >= self.bet_type_id:  # both of type INT
+                    wins += city, extracted_numbers  # type STR, type [int]
         return wins  # type TUPLE (str,[int])
 
-    # This method prints a ticket
+    # This method prints a ticket played
     def print_ticket(self):
+        # Table HEADER
         print()
         print("╔{:^43}╗".format("═" * 43))     # ASCII code (201,205,187)
         print("║{:^43}║".format("Ticket n. {}".format(self.id_ticket)))     # ASCII code (186)
         print("╠{:^43}╣".format("═" * 43))  # ASCII code (204,205,185)
+        # Table BODY
         print("║    Wheel:  {:31}║".format(self.city.name))  # ASCII code (186)
         print("║    Money:  {:31}║".format("€ {:.2f}".format(self.money_put)))  # ASCII code (186)
         # .... bet_type must be an OBJECT (class BetType) but doesn't work
         print("║  BetType:  {:31}║".format(self.bet_type_name))  # ASCII code (186)
+        # In this section are printed the numbers played
         numbers = ""
-        for number in self.numbers:
+        for number in self.numbers:  # type INT
             numbers += str(number) + " "
         print("║  Numbers:  {:31}║".format(numbers))  # ASCII code (186)
         print("╠{:^43}╣".format("═" * 43))  # ASCII code (204,205,185)
+        # In this section has printed the winning result of the bet
         if self.result_city:  # non-empty list
             print("║{:^43}║".format("Congratulations, you won."))
             for i, city in enumerate(self.result_city):
                 print("╠{:^43}╣".format("═" * 43))  # ASCII code (204,205,185)
                 print("║              Wheel: {:22}║".format(city))  # ASCII code (186)
+                # In this section are printed the numbers extracted
                 numbers = ""
                 for value in self.result_numbers[i]:
                     numbers += str(value) + " "
                 print("║  Extracted numbers: {:22}║".format(numbers))  # ASCII code (186)
+                # In this section are printed the winnings for each wheel/city
                 print("║          Gross win:"
                       " {:22}║".format("€ {:.2f}".format(self.result_gross_amount[i])))  # ASCII code (186)
                 print("║            Net win:"
                       " {:22}║".format("€ {:.2f}".format(self.result_net_amount[i])))  # ASCII code (186)
             print("╠{:^43}╣".format("═" * 43))  # ASCII code (204,205,185)
+            # In this section has printed the total winnings for each ticket
             print("║    TOTAL GROSS WIN:"
                   " {:22}║".format("€ {:.2f}".format(sum(self.result_gross_amount))))  # ASCII code (186)
             print("║      TOTAL NET WIN:"
                   " {:22}║".format("€ {:.2f}".format(sum(self.result_net_amount))))  # ASCII code (186)
+        # In this section has printed the losing result of the bet
         else:  # False
             print("║{:^43}║".format("{}".format("I’m sorry, you lost.")))  # ASCII code (186)
+        # Table FOOTER
         print("╚{:^43}╝".format("═" * 43))  # ASCII code (200,205,188)
 
     # This static method acquires from the user the number of tickets to generate
@@ -99,8 +109,8 @@ class Ticket:
         MAX_TICKETS = 5
         while True:
             try:
-                num_tickets = int(input("\nHow many tickets do you want to generate (between "
-                                        "{} and {}, 0 to quit)? ".format(MIN_TICKETS, MAX_TICKETS)))  # type int
+                num_tickets = int(input("\nHow many tickets do you want to generate (between "  # type INT
+                                        "{} and {}, 0 to quit)? ".format(MIN_TICKETS, MAX_TICKETS)))
                 if num_tickets == 0:
                     print("\nThank you for your attention.\nThe simulation of the lotto game is terminated.")
                     quit()
@@ -130,4 +140,4 @@ class Ticket:
                     raise ValueError
             except ValueError:
                 print("Incorrect Entry. Try Again.")
-        return amount_money  # type int
+        return amount_money  # type INT
