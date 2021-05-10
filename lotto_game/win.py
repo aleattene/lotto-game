@@ -39,8 +39,7 @@ class Win:
     def calculate_gross_net_win(self, ticket):
         TAX = (100 - 8) / 100
         combinations = Win.combinations[len(self.extracted_numbers)][ticket.bet_type_id - 1]
-        print(combinations)
-        amount = (Win.gross_winnings[len(ticket.numbers)][ticket.bet_type_id-1]) * combinations
+        amount = (Win.gross_winnings[len(ticket.numbers)][ticket.bet_type_id-1]) * combinations * ticket.money_put
         if ticket.city.name == "Tutte":
             self.gross_amount = amount / (len(City.all_cities)-1)
         else:
