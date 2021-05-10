@@ -6,14 +6,15 @@ class Ticket:
     # List that will contain all the tickets played
     tickets_played = []
 
-    def __init__(self, id_ticket, bet_type_id, bet_type_name, city, numbers):
+    def __init__(self, id_ticket, bet_type_id, bet_type_name, money_put, city, numbers):
         self.id_ticket = id_ticket      # type INT
         # .... bet_type must be an OBJECT (class BetType) but doesn't work
         self.bet_type_id = bet_type_id
         self.bet_type_name = bet_type_name
+        self.money_put = money_put      # type FLOAT
         self.city = city                # type OBJECT (class City)
         self.numbers = numbers          # type LIST
-        # .... result must be a list of OBJECTS (class Win) but doesn't work
+        # .... result must be an OBJECT (class Win) but doesn't work
         self.result_city = []
         self.result_numbers = []
         self.result_gross_amount = []
@@ -60,6 +61,7 @@ class Ticket:
         print("║{:^43}║".format("Ticket n. {}".format(self.id_ticket)))     # ASCII code (186)
         print("╠{:^43}╣".format("═" * 43))  # ASCII code (204,205,185)
         print("║    Wheel:  {:31}║".format(self.city.name))  # ASCII code (186)
+        print("║    Money:  {:31}║".format("€ {:.2f}".format(self.money_put)))  # ASCII code (186)
         # .... bet_type must be an OBJECT (class BetType) but doesn't work
         print("║  BetType:  {:31}║".format(self.bet_type_name))  # ASCII code (186)
         numbers = ""
@@ -109,3 +111,23 @@ class Ticket:
             except ValueError:
                 print("Incorrect Entry. Try Again.")
         return MIN_TICKETS, num_tickets  # type TUPLE (int,int)
+
+    # This static method acquires from the user the amount of money to put on each ticket
+    @staticmethod
+    def acquire_money_put_ticket(num_ticket):
+        # Minimum and maximum amount of money to put on each ticket
+        MIN_AMOUNT_MONEY = 1
+        MAX_AMOUNT_MONEY = 200
+        while True:
+            try:
+                amount_money = float(input("\nEnter the amount of money to put on the ticket " +  # type FLOAT
+                                           "n. {} (between € {} and".format(num_ticket, MIN_AMOUNT_MONEY) +
+                                           " € {}): € ".format(MAX_AMOUNT_MONEY)))
+                # ... control 50 cents
+                if MIN_AMOUNT_MONEY <= amount_money <= MAX_AMOUNT_MONEY:
+                    break
+                else:
+                    raise ValueError
+            except ValueError:
+                print("Incorrect Entry. Try Again.")
+        return amount_money  # type int
