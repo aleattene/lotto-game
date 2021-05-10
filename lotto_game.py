@@ -20,6 +20,9 @@ def main():
         # Acquisition of the amount of numbers to generate for each ticket
         amount_numbers = NumberUtils.acquire_amount_numbers(i, bet_key_name[0])  # type INT
 
+        # Acquisition of the amount of money to put on each ticket
+        amount_money = Ticket.acquire_money_put_ticket(i)  # type FLOAT
+
         # Acquisition of the wheel/city to play for each ticket
         city_key_name = City.acquire_city(i)  # type TUPLE (int,str)
 
@@ -32,7 +35,7 @@ def main():
         generated_numbers = NumberUtils.generate_numbers(amount_numbers)  # type LIST [int]
         # New Object of type Ticket
         # .... bet_type must be an OBJECT (class BetType) but doesn't work
-        ticket = Ticket(i, bet_type.id_bet_type, bet_type.name, city, generated_numbers)
+        ticket = Ticket(i, bet_type.id_bet_type, bet_type.name, amount_money, city, generated_numbers)
 
         # STORAGE OF EACH TICKET PLAYED
         ticket.storage_ticket()
@@ -49,11 +52,12 @@ def main():
             while True:
                 # New Object of type Win
                 win = Win(result[i], result[i+1])
-                # .... result must be a list of OBJECTS (class Win) but doesn't work
+                # .... result/win must be an OBJECTS (class Win) but doesn't work
                 ticket.result_city.append(win.city)
                 ticket.result_numbers.append(win.extracted_numbers)
                 # Calculation of gross and net winnings for each wheel played
                 win.calculate_gross_net_win(ticket)
+                # .... result/win must be an OBJECT (class Win) but doesn't work
                 # Adding the value of winnings to the attributes of the ticket object
                 ticket.result_gross_amount.append(win.gross_amount)
                 ticket.result_net_amount.append(win.net_amount)
