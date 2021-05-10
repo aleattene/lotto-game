@@ -36,7 +36,7 @@ class Win:
         Numbers: {self.extracted_numbers}
        """)
 
-    def calculate_gross_win(self, ticket):
+    def calculate_gross_net_win(self, ticket):
         TAX = (100 - 8) / 100
         combinations = Win.combinations[len(self.extracted_numbers)][ticket.bet_type_id - 1]
         print(combinations)
