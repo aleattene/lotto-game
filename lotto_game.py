@@ -46,14 +46,14 @@ def main():
 
     # CHECK RESULTS
     for ticket in Ticket.tickets_played:
-        result = ticket.check_ticket()  # type TUPLE
+        result = ticket.check_ticket()  # type TUPLE (str,[int])
         if ticket.check_ticket():   # non-empty tuple
             i = 0
             while True:
                 # New Object of type Win
                 win = Win(result[i], result[i+1])
                 # .... result/win must be an OBJECTS (class Win) but doesn't work
-                ticket.result_city.append(win.city)
+                ticket.result_city.append(win.city_name)
                 ticket.result_numbers.append(win.extracted_numbers)
                 # Calculation of gross and net winnings for each wheel played
                 win.calculate_gross_net_win(ticket)
