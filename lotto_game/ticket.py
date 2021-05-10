@@ -16,6 +16,8 @@ class Ticket:
         # .... result must be a list of OBJECTS (class Win) but doesn't work
         self.result_city = []
         self.result_numbers = []
+        self.result_gross_amount = []
+        self.result_net_amount = []
 
     def __str__(self):
         return (f"""
@@ -74,6 +76,15 @@ class Ticket:
                 for value in self.result_numbers[i]:
                     numbers += str(value) + " "
                 print("║  Extracted numbers: {:22}║".format(numbers))  # ASCII code (186)
+                print("║          Gross win:"
+                      " {:22}║".format("€ {:.2f}".format(self.result_gross_amount[i])))  # ASCII code (186)
+                print("║            Net win:"
+                      " {:22}║".format("€ {:.2f}".format(self.result_net_amount[i])))  # ASCII code (186)
+            print("╠{:^43}╣".format("═" * 43))  # ASCII code (204,205,185)
+            print("║    TOTAL GROSS WIN:"
+                  " {:22}║".format("€ {:.2f}".format(sum(self.result_gross_amount))))  # ASCII code (186)
+            print("║      TOTAL NET WIN:"
+                  " {:22}║".format("€ {:.2f}".format(sum(self.result_net_amount))))  # ASCII code (186)
         else:  # False
             print("║{:^43}║".format("{}".format("I’m sorry, you lost.")))  # ASCII code (186)
         print("╚{:^43}╝".format("═" * 43))  # ASCII code (200,205,188)
@@ -98,5 +109,3 @@ class Ticket:
             except ValueError:
                 print("Incorrect Entry. Try Again.")
         return MIN_TICKETS, num_tickets  # type TUPLE (int,int)
-
-
