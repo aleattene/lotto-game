@@ -52,7 +52,7 @@ class Ticket:
                         extracted_numbers.append(number)
                 if len(extracted_numbers) >= self.bet_type_id:
                     wins += city, extracted_numbers
-        return wins  # type TUPLE
+        return wins  # type TUPLE (str,[int])
 
     # This method prints a ticket
     def print_ticket(self):
