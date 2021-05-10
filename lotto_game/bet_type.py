@@ -4,8 +4,8 @@ class BetType:
     all_bet_types = {1: "Ambata", 2: "Ambo", 3: "Terno", 4: "Quaterna", 5: "Cinquina"}
 
     def __init__(self, id_bet_type, name):
-        self.id_bet_type = id_bet_type
-        self.name = name
+        self.id_bet_type = id_bet_type  # type INT
+        self.name = name                # type STR
 
     def __str__(self):
         return (f"""
