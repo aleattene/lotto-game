@@ -1,3 +1,4 @@
+import argparse
 from lotto_game.bet_type import BetType
 from lotto_game.city import City
 from lotto_game.number_utils import NumberUtils
@@ -8,8 +9,21 @@ from lotto_game.win import Win
 
 def main():
 
-    # Acquisition of the number of tickets to generate
-    range_tickets = Ticket.acquire_number_tickets()  # type TUPLE (num_min_tickets,num_max_tickets)
+    try:
+        # Acquisition of the number of tickets to generate directly from command line
+        parser = argparse.ArgumentParser()
+        parser.add_argument("-n", "--num_ticket", help="Number of tickets")
+        args = parser.parse_args()
+        # Check insertion of the correct value
+        if 1 <= int(args.num_ticket) <= 10:
+            range_tickets = (1, int(args.num_ticket))  # type TUPLE (1, max 10)
+        else:
+            raise ValueError
+    except ValueError:
+        # Error message
+        print("\nWarning, you have entered from the command line a value not allowed.")
+        # Acquisition of the number of tickets to generate from the user
+        range_tickets = Ticket.acquire_number_tickets()  # type TUPLE (num_min_tickets,num_max_tickets)
 
     # TICKETS GENERATION
     for i in range(range_tickets[0], range_tickets[1] + 1):
