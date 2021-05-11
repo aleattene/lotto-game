@@ -20,6 +20,7 @@ For launch the program, start the file `lotto_game.py`
 present in the root directory and follow the instructions displayed.
 
 <h3>lotto_game.py</h3>
+
 In this file, we find the **_business logic_** of the entire program/project.
 In particular, we find:
 * the requests to the user about the _**tickets number to generate**_, and for each ticket, 
