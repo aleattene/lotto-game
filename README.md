@@ -2,6 +2,7 @@
 
 <p style="text-align: justify;">
 This project simulates the Italian lotto game.
+
 For one thing, are generated the lottery tickets based on the choices performed by the user 
 (numbers of tickets to generate, name of the wheel/city, type of bet, money to put, 
 and amount of numbers to generate).
