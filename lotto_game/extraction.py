@@ -24,7 +24,7 @@ class Extraction:
     def print_extraction():
         # Table HEADER
         print("\n╔{:^43}╗".format("═" * 43))  # ASCII code (201,187,205)
-        print("║{:^43}║".format("ESTRAZIONE del "  # ASCII code (186)
+        print("║{:^43}║".format("LOTTO - ESTRAZIONE del "  # ASCII code (186)
                                 "{}".format(datetime.today().strftime('%d/%m/%Y'))))  # date format: DD/MM/YYYY
         print("╠{:^43}╣".format("═" * 43))  # ASCII code (204,185,205)
         # Table BODY
