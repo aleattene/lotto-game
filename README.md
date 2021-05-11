@@ -16,6 +16,7 @@ https://www.sisal.it/lotto/come-si-gioca
 </p>
 
 <h2>Project Structure</h2>
+
 For launch the program, start the file `lotto_game.py` 
 present in the root directory and follow the instructions displayed.
 
@@ -31,6 +32,7 @@ In particular, we find:
 * the verification of the _**winning tickets**_ and relative _**gross**_ and _**net winning**_.
 
 <h3>lotto_game folder</h3>
+
 In this folder are contained all the classes used in the program/project:
 
 * <h4> bet_type.py </h4> 
