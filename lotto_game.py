@@ -9,19 +9,23 @@ from lotto_game.win import Win
 
 def main():
 
-    try:
-        # Acquisition of the number of tickets to generate directly from command line
-        parser = argparse.ArgumentParser()
-        parser.add_argument("-n", "--num_ticket", help="Number of tickets")
-        args = parser.parse_args()
-        # Check insertion of the correct value
-        if 1 <= int(args.num_ticket) <= 10:
-            range_tickets = (1, int(args.num_ticket))  # type TUPLE (1, max 10)
+    # Acquisition of the number of tickets to generate directly from command line
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-n", "--num_ticket", help="Number of tickets", type=int)
+    args = parser.parse_args()
+
+    # Check insertion of the correct value
+    argument = False
+    if args.num_ticket is not None:  # an argument has been inserted
+        if 1 <= args.num_ticket <= 10:
+            range_tickets = (1, args.num_ticket)  # type TUPLE (1, max 10)
+            argument = True
         else:
-            raise ValueError
-    except ValueError:
-        # Error message
-        print("\nWarning, you have entered from the command line a value not allowed.")
+            # Error message
+            print("\nWarning, you have entered from the command line a numeric value not allowed.")
+            argument = False
+
+    if not argument:  # no argument has been added
         # Acquisition of the number of tickets to generate from the user
         range_tickets = Ticket.acquire_number_tickets()  # type TUPLE (num_min_tickets,num_max_tickets)
 
