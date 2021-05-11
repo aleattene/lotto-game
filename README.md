@@ -28,7 +28,9 @@ In particular, we find:
   the **_type of bet_**, how many _**numbers to generate**_ (between 1 and 10), 
   the _**amount of money**_ to put (between € 1 and € 200) and the **_wheel/city_**
 * the generation of the _**tickets**_
-* the simulation of the lotto _**extraction**_
+* the simulation of the lotto _**extraction**_: 
+  
+    https://www.servizitelevideo.rai.it/televideo/pub/pagina.jsp?p=786&s=0&r=Nazionale&idmenumain=0
 * the verification of the _**winning tickets**_ and relative _**gross**_ and _**net winning**_.
 
 <h3>lotto_game folder</h3>
