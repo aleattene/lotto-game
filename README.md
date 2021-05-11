@@ -25,9 +25,9 @@ In particular, we find:
 * the requests to the user about the _**tickets number to generate**_, and for each ticket, 
   the **_type of bet_**, how many _**numbers to generate**_ (between 1 and 10), 
   the _**amount of money**_ to put (between € 1 and € 200) and the **_wheel/city_**
-- the generation of the _**tickets**_
-- the simulation of the lotto _**extraction**_
-- the verification of the _**winning tickets**_ and relative _**gross**_ and _**net winning**_.
+* the generation of the _**tickets**_
+* the simulation of the lotto _**extraction**_
+* the verification of the _**winning tickets**_ and relative _**gross**_ and _**net winning**_.
 
 <h3>lotto_game folder</h3>
 In this folder are contained all the classes used in the program/project:
