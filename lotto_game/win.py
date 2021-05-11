@@ -49,7 +49,7 @@ class Win:
         combinations = Win.combinations[len(self.extracted_numbers)][ticket.bet_type_id - 1]
         # GROSS WINNING FOR A SINGLE WHEEL/CITY PLAYED
         amount = (Win.gross_winnings[len(ticket.numbers)][ticket.bet_type_id-1]) * combinations * ticket.money_put
-        if ticket.city_name.name == "Tutte":
+        if ticket.city.name == "Tutte":
             # Subdivision gross winning between all wheels/cities played and instance attribute updating
             self.gross_amount = amount / (len(City.all_cities)-1)
         else:
