@@ -75,7 +75,7 @@ def main():
                 # New Object of type Win
                 win = Win(result[i], result[i+1])
 
-                #
+                # Addition of win object to the attribute ticket.winning (list of objects)
                 ticket.winning_wheels.append(win)
 
                 # Calculation of gross and net winnings for each wheel played
