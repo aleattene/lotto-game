@@ -46,18 +46,17 @@ def main():
         city_key_name = City.acquire_city(i)  # type TUPLE (int,str)
 
         # SINGLE TICKET GENERATION
-        # New Object of type City
+        # New Object of type City (int,str)
         city = City(city_key_name[0], city_key_name[1])
 
-        # New Object of type BetType
+        # New Object of type BetType (int,str)
         bet_type = BetType(bet_key_name[0], bet_key_name[1])
 
         # Generation of the numbers to play for each ticket
         generated_numbers = NumberUtils.generate_numbers(amount_numbers)  # type LIST [int]
 
-        # New Object of type Ticket
-        # .... bet_type must be an OBJECT (class BetType) but doesn't work
-        ticket = Ticket(i, bet_type.id_bet_type, bet_type.name, amount_money, city, generated_numbers)
+        # New Object of type Ticket (int,obj,float,obj,[int])
+        ticket = Ticket(i, bet_type, amount_money, city, generated_numbers)
 
         # STORAGE OF EACH TICKET PLAYED
         ticket.storage_ticket()
@@ -72,7 +71,7 @@ def main():
         if ticket.check_ticket():   # non-empty tuple
             i = 0
             while True:
-                # New Object of type Win
+                # New Object of type Win (str,[int])
                 win = Win(result[i], result[i+1])
 
                 # Addition of win object to the attribute ticket.winning (list of objects)
