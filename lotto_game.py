@@ -75,22 +75,19 @@ def main():
                 # New Object of type Win
                 win = Win(result[i], result[i+1])
 
-                # .... result/win must be an OBJECTS (class Win) but doesn't work
-                ticket.result_city.append(win.city_name)
-                ticket.result_numbers.append(win.extracted_numbers)
+                #
+                ticket.winning_wheels.append(win)
 
                 # Calculation of gross and net winnings for each wheel played
                 win.calculate_gross_net_win(ticket)
 
-                # .... result/win must be an OBJECT (class Win) but doesn't work
-                # Adding the value of winnings to the attributes of the ticket object
-                ticket.result_gross_amount.append(win.gross_amount)
-                ticket.result_net_amount.append(win.net_amount)
                 i += 2
-
                 # In the following case, there are no more winning wheels
                 if i >= len(result):
                     break
+
+        # Calculation of total gross and net win for each ticket
+        ticket.calculate_total_gross_net_amount()
 
     # PRINT RESULTS
     for ticket in Ticket.tickets_played:
