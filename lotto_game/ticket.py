@@ -8,10 +8,7 @@ class Ticket:
 
     def __init__(self, id_ticket, bet_type, money_put, city, numbers):
         self.id_ticket = id_ticket      # type INT
-        self.bet_type = bet_type
-        # .... bet_type must be an OBJECT (class BetType) but doesn't work
-        # self.bet_type_id = bet_type_id
-        # self.bet_type_name = bet_type_name
+        self.bet_type = bet_type        # type OBJECT (class BetType)
         self.money_put = money_put      # type FLOAT
         self.city = city                # type OBJECT (class City)
         self.numbers = numbers          # type LIST
@@ -57,7 +54,7 @@ class Ticket:
                     wins += city, extracted_numbers  # type STR, type [int]
         return wins  # type TUPLE (str,[int])
 
-    #
+    # This instance method calculates the total gross and net win for each ticket
     def calculate_total_gross_net_amount(self):
         total_gross_amount = 0
         total_net_amount = 0
