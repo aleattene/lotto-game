@@ -6,11 +6,12 @@ class Ticket:
     # List that will contain all the tickets played
     tickets_played = []
 
-    def __init__(self, id_ticket, bet_type_id, bet_type_name, money_put, city, numbers):
+    def __init__(self, id_ticket, bet_type, money_put, city, numbers):
         self.id_ticket = id_ticket      # type INT
+        self.bet_type = bet_type
         # .... bet_type must be an OBJECT (class BetType) but doesn't work
-        self.bet_type_id = bet_type_id
-        self.bet_type_name = bet_type_name
+        # self.bet_type_id = bet_type_id
+        # self.bet_type_name = bet_type_name
         self.money_put = money_put      # type FLOAT
         self.city = city                # type OBJECT (class City)
         self.numbers = numbers          # type LIST
@@ -21,9 +22,9 @@ class Ticket:
     def __str__(self):
         return (f"""
         Ticket number: {self.id_ticket} 
-        Bet Type: {self.bet_type_name, self.bet_type_id} 
+        Bet Type: {self.bet_type} 
         Money: {self.money_put}
-        City: {self.city.name, self.city.id_city}               
+        City: {self.city}              
         Numbers: {self.numbers} 
         Result: {self.winning_wheels} 
         Gross Amount: {self.gross_amount} 
@@ -44,7 +45,7 @@ class Ticket:
             for number in Extraction.extraction[self.city.name]:  # type(number) = INT
                 if number in self.numbers:
                     extracted_numbers.append(number)
-            if len(extracted_numbers) >= self.bet_type_id:  # both of type INT
+            if len(extracted_numbers) >= self.bet_type.id_bet_type:  # both of type INT
                 wins += self.city.name, extracted_numbers  # type STR, type [int]
         else:   # cities chosen = "Tutte"
             for city in Extraction.extraction:
@@ -52,7 +53,7 @@ class Ticket:
                 for number in Extraction.extraction[city]:  # type(number) = INT
                     if number in self.numbers:
                         extracted_numbers.append(number)
-                if len(extracted_numbers) >= self.bet_type_id:  # both of type INT
+                if len(extracted_numbers) >= self.bet_type.id_bet_type:  # both of type INT
                     wins += city, extracted_numbers  # type STR, type [int]
         return wins  # type TUPLE (str,[int])
 
@@ -77,7 +78,7 @@ class Ticket:
         print("║    Wheel:  {:31}║".format(self.city.name))  # ASCII code (186)
         print("║    Money:  {:31}║".format("€ {:.2f}".format(self.money_put)))  # ASCII code (186)
         # .... bet_type must be an OBJECT (class BetType) but doesn't work
-        print("║  BetType:  {:31}║".format(self.bet_type_name))  # ASCII code (186)
+        print("║  BetType:  {:31}║".format(self.bet_type.name))  # ASCII code (186)
         # In this section are printed the numbers played
         numbers = ""
         for number in self.numbers:  # type INT
