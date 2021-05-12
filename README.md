@@ -119,5 +119,6 @@ In this folder are contained all the classes used in the program/project:
 
     * **calculate_gross_net_win**
       
-    This instance method calculates the gross and net win for each winning ticket.
+    This instance method calculates the gross and net win for each winning wheel/city.
+    For more information visit: https://www.estrazionedellotto.it/prontuario-vincite-lotto
       
