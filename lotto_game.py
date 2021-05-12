@@ -15,6 +15,7 @@ def main():
     args = parser.parse_args()
 
     # Check insertion of the correct value
+    range_tickets = ()
     argument = False
     if args.num_ticket is not None:  # an argument has been inserted
         if 1 <= args.num_ticket <= 10:
