@@ -21,10 +21,13 @@ class Ticket:
     def __str__(self):
         return (f"""
         Ticket number: {self.id_ticket} 
-        Bet Type: {self.bet_type_name} 
-        City: {self.city} 
+        Bet Type: {self.bet_type_name, self.bet_type_id} 
+        Money: {self.money_put}
+        City: {self.city.name, self.city.id_city}               
         Numbers: {self.numbers} 
         Result: {self.winning_wheels} 
+        Gross Amount: {self.gross_amount} 
+        Net Amount: {self.net_amount}
         """)
 
     # This instance method storages the tickets played
