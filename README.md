@@ -98,6 +98,10 @@ In this folder are contained all the classes used in the program/project:
       
         This instance method checks whether the ticket is winning or not.
 
+    * **calculate_total_gross_net_amount**
+      
+        This instance method calculates the total gross and net win for each ticket
+
     * **print_ticket**
       
         This method prints a ticket played.
