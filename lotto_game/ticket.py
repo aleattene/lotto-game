@@ -14,11 +14,9 @@ class Ticket:
         self.money_put = money_put      # type FLOAT
         self.city = city                # type OBJECT (class City)
         self.numbers = numbers          # type LIST
-        # .... result must be an OBJECT (class Win) but doesn't work
-        self.result_city = []
-        self.result_numbers = []
-        self.result_gross_amount = []
-        self.result_net_amount = []
+        self.winning_wheels = []        # type LIST of win (obj of type Win)
+        self.gross_amount = 0           # type FLOAT
+        self.net_amount = 0             # type FLOAT
 
     def __str__(self):
         return (f"""
@@ -26,7 +24,7 @@ class Ticket:
         Bet Type: {self.bet_type_name} 
         City: {self.city} 
         Numbers: {self.numbers} 
-        Result: {self.result_numbers} 
+        Result: {self.winning_wheels} 
         """)
 
     # This instance method storages the tickets played
@@ -55,6 +53,16 @@ class Ticket:
                     wins += city, extracted_numbers  # type STR, type [int]
         return wins  # type TUPLE (str,[int])
 
+    #
+    def calculate_total_gross_net_amount(self):
+        total_gross_amount = 0
+        total_net_amount = 0
+        for win in self.winning_wheels:
+            total_gross_amount += win.gross_amount
+            total_net_amount += win.net_amount
+        self.gross_amount = total_gross_amount
+        self.net_amount = total_net_amount
+
     # This method prints a ticket played
     def print_ticket(self):
         # Table HEADER
@@ -74,27 +82,27 @@ class Ticket:
         print("║  Numbers:  {:31}║".format(numbers))  # ASCII code (186)
         print("╠{:^43}╣".format("═" * 43))  # ASCII code (204,205,185)
         # In this section has printed the winning result of the bet
-        if self.result_city:  # non-empty list
+        if self.winning_wheels:  # non-empty list
             print("║{:^43}║".format("Congratulations, you won."))
-            for i, city in enumerate(self.result_city):
+            for win in self.winning_wheels:  # type obj #######################
                 print("╠{:^43}╣".format("═" * 43))  # ASCII code (204,205,185)
-                print("║              Wheel: {:22}║".format(city))  # ASCII code (186)
+                print("║              Wheel: {:22}║".format(win.city_name))  # ASCII code (186)
                 # In this section are printed the numbers extracted
                 numbers = ""
-                for value in self.result_numbers[i]:
+                for value in win.extracted_numbers:
                     numbers += str(value) + " "
                 print("║  Extracted numbers: {:22}║".format(numbers))  # ASCII code (186)
                 # In this section are printed the winnings for each wheel/city
                 print("║          Gross win:"
-                      " {:22}║".format("€ {:.2f}".format(self.result_gross_amount[i])))  # ASCII code (186)
+                      " {:22}║".format("€ {:.2f}".format(win.gross_amount)))  # ASCII code (186)
                 print("║            Net win:"
-                      " {:22}║".format("€ {:.2f}".format(self.result_net_amount[i])))  # ASCII code (186)
+                      " {:22}║".format("€ {:.2f}".format(win.net_amount)))  # ASCII code (186)
             print("╠{:^43}╣".format("═" * 43))  # ASCII code (204,205,185)
             # In this section has printed the total winnings for each ticket
             print("║    TOTAL GROSS WIN:"
-                  " {:22}║".format("€ {:.2f}".format(sum(self.result_gross_amount))))  # ASCII code (186)
+                  " {:22}║".format("€ {:.2f}".format(self.gross_amount)))  # ASCII code (186)
             print("║      TOTAL NET WIN:"
-                  " {:22}║".format("€ {:.2f}".format(sum(self.result_net_amount))))  # ASCII code (186)
+                  " {:22}║".format("€ {:.2f}".format(self.net_amount)))  # ASCII code (186)
         # In this section has printed the losing result of the bet
         else:  # False
             print("║{:^43}║".format("{}".format("I’m sorry, you lost.")))  # ASCII code (186)
@@ -141,3 +149,4 @@ class Ticket:
             except ValueError:
                 print("Incorrect Entry. Try Again.")
         return amount_money  # type INT
+
