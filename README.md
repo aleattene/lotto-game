@@ -19,6 +19,8 @@ https://www.sisal.it/lotto/come-si-gioca
 
 For launch the program, start the file `lotto_game.py` 
 present in the root directory and follow the instructions displayed.
+Alternatively, you can enter the number of tickets to (e.g., 3) be generated 
+directly from the command line as follows: `py lotto_game.py -n 3`
 
 <h3>lotto_game.py</h3>
 
