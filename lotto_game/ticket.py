@@ -137,13 +137,15 @@ class Ticket:
         # Minimum and maximum amount of money to put on each ticket
         MIN_AMOUNT_MONEY = 1
         MAX_AMOUNT_MONEY = 200
+        DENOMINATIONS = 0.5
         while True:
             try:
                 amount_money = float(input("\nEnter the amount of money to put on the ticket " +  # type FLOAT
                                            "n. {} (between € {} and".format(num_ticket, MIN_AMOUNT_MONEY) +
-                                           " € {}): € ".format(MAX_AMOUNT_MONEY)))
-                # ... control 50 cents
-                if MIN_AMOUNT_MONEY <= amount_money <= MAX_AMOUNT_MONEY:
+                                           " € {}, with denominations of 50 cents): € ".format(MAX_AMOUNT_MONEY)))
+                # The following code checks that amount_money is understood between 1 and 200 euros (50 cents included).
+                if MIN_AMOUNT_MONEY <= amount_money <= MAX_AMOUNT_MONEY \
+                        and ((amount_money % 1) == 0 or (amount_money % 1) == DENOMINATIONS):
                     break
                 else:
                     raise ValueError
