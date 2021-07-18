@@ -18,7 +18,7 @@ class City:
     @staticmethod
     def acquire_city(num_ticket):
         print()
-        for k in City.all_cities:   # type INT
+        for k in City.all_cities:   # type(k) = INT
             print("       {}: {}".format(k, City.all_cities[k]))
         while True:
             try:

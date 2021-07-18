@@ -30,10 +30,10 @@ class NumberUtils:
         numbers = []
         while amount_numbers > 0:
             number = randint(MIN_NUMBER, MAX_NUMBER + 1)
-            if number not in numbers:
+            if number not in numbers:  # this condition avoids duplicate numbers
                 numbers.append(number)
                 amount_numbers -= 1
-        numbers.sort()
+        numbers.sort()  # increasing sorting of the list
         return numbers  # type LIST (ascending order)
 
 
