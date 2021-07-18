@@ -8,6 +8,12 @@ class City:
         self.id_city = id_city      # type INT
         self.name = name            # type STR
 
+    def __str__(self):
+        return (f"""
+        Id City: {self.id_city} 
+        City: {self.name}  
+        """)
+
     # This static method acquires from the user the city to play for each ticket
     @staticmethod
     def acquire_city(num_ticket):
