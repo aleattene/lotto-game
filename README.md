@@ -1,1 +1,1 @@
-# lotto-game
+# LOTTO-GAME
