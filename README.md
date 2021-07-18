@@ -121,4 +121,3 @@ In this folder are contained all the classes used in the program/project:
       
     This instance method calculates the gross and net win for each winning wheel/city.
     For more information visit: https://www.estrazionedellotto.it/prontuario-vincite-lotto
-      
