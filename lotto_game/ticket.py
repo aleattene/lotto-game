@@ -1,4 +1,4 @@
-from lotto_game.extraction import Extraction
+from .extraction import Extraction
 
 
 class Ticket:
@@ -152,4 +152,3 @@ class Ticket:
             except ValueError:
                 print("Incorrect Entry. Try Again.")
         return amount_money  # type INT
-

@@ -1,4 +1,4 @@
-from lotto_game.city import City
+from .city import City
 
 
 class Win:
@@ -48,7 +48,8 @@ class Win:
         # Combinations can be achieved on a single wheel/city
         combinations = Win.combinations[len(self.extracted_numbers)][ticket.bet_type.id_bet_type - 1]
         # GROSS WINNING FOR A SINGLE WHEEL/CITY PLAYED
-        amount = (Win.gross_winnings[len(ticket.numbers)][ticket.bet_type.id_bet_type-1]) * combinations * ticket.money_put
+        amount = (Win.gross_winnings[len(ticket.numbers)][ticket.bet_type.id_bet_type-1]) \
+            * combinations * ticket.money_put
         if ticket.city.name == "Tutte":
             # Subdivision gross winning between all wheels/cities played and instance attribute updating
             self.gross_amount = amount / (len(City.all_cities)-1)
@@ -57,9 +58,3 @@ class Win:
             self.gross_amount = amount
         # Instance attribute updating
         self.net_amount = self.gross_amount * TAX
-
-
-
-
-
-
