@@ -35,14 +35,3 @@ class NumberUtils:
                 amount_numbers -= 1
         numbers.sort()  # increasing sorting of the list
         return numbers  # type LIST (ascending order)
-
-
-
-
-
-
-
-
-
-
-
